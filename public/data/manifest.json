@@ -1,0 +1,8 @@
+{
+  "dataset": "china-drivers-license-subject1-en",
+  "schemaVersion": 1,
+  "questionCount": 2545,
+  "datasetImportedAt": "2026-09-13",
+  "source": "https://github.com/AgostonBodoAiGaoShi/china-drivers-license-subject1-en",
+  "sourceCommit": "90881c54f64d3c85afea7df462ae8d32fc4bf8e7"
+}

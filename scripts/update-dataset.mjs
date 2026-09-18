@@ -1,0 +1,11 @@
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+const source = process.argv[2] || 'dataset-source';
+await mkdir('public/data', { recursive: true });
+await cp(`${source}/data/questions_bilingual.json`, 'public/data/questions_bilingual.json');
+await cp(`${source}/images`, 'public/images', { recursive: true });
+await cp(`${source}/LICENSE`, 'public/data/LICENSE.txt');
+await cp(`${source}/SOURCES.md`, 'public/data/SOURCES.md');
+const questions = JSON.parse(await readFile('public/data/questions_bilingual.json', 'utf8'));
+await writeFile('public/data/manifest.json', JSON.stringify({ dataset:'china-drivers-license-subject1-en', schemaVersion:1, questionCount:questions.length, datasetImportedAt:new Date().toISOString().slice(0,10), source:'https://github.com/AgostonBodoAiGaoShi/china-drivers-license-subject1-en', sourceCommit:execFileSync('git',['-C',source,'rev-parse','HEAD'],{encoding:'utf8'}).trim() },null,2));
+await import('./validate-dataset.mjs');

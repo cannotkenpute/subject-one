@@ -1,0 +1,53 @@
+import { test, expect } from '@playwright/test';
+import bank from '../public/data/questions_bilingual.json';
+test('exam answers, flags, timer persistence, grading, history, cookie and backup round trip',async({page})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');await expect(page.getByRole('heading',{name:'Your road to ready.'})).toBeVisible();
+ await page.getByRole('button',{name:'Start mock exam',exact:true}).click();
+ await expect(page.locator('.question-grid button')).toHaveCount(100);
+ await expect(page.locator('.timer')).toContainText('45:');
+ let active=await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.activeExam.v1')!));
+ expect(new Set(active.questionIds).size).toBe(100);
+ await page.locator('.option').first().click();await page.getByRole('button',{name:'Flag for review',exact:true}).click();
+ await page.getByRole('button',{name:'Next',exact:true}).click();await page.locator('.option').last().click();
+ const startedAt=active.startedAt;
+ await page.reload();await page.getByRole('button',{name:'Resume exam',exact:true}).click();
+ active=await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.activeExam.v1')!));
+ expect(active.startedAt).toBe(startedAt);expect(active.currentIndex).toBe(1);expect(Object.keys(active.answers)).toHaveLength(2);expect(active.flaggedIds).toHaveLength(1);
+ await expect(page.locator('.explanation')).toHaveCount(0);
+ const answers=Object.fromEntries(active.questionIds.slice(0,90).map((id:string)=>[id,bank.find(q=>q.id===id)!.answer]));
+ await page.evaluate(answers=>{const e=JSON.parse(localStorage.getItem('subject1.activeExam.v1')!);e.answers=answers;localStorage.setItem('subject1.activeExam.v1',JSON.stringify(e));},answers);
+ await page.reload();await page.getByRole('button',{name:'Resume exam',exact:true}).click();
+ await page.getByRole('button',{name:'Submit exam',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('10 questions are unanswered');await page.getByRole('dialog').getByRole('button',{name:'Submit exam',exact:true}).click();
+ await expect(page.locator('.result-banner')).toContainText('PASS');await expect(page.locator('.score-ring strong')).toHaveText('90');
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.wrongQuestions.v1')!).length)).toBe(10);
+ expect(await page.evaluate(()=>JSON.parse(decodeURIComponent(document.cookie.split('subject1_results=')[1].split(';')[0])).lastScore)).toBe(90);
+ await page.getByLabel('Review filter').selectOption('unanswered');await expect(page.getByText('Unanswered — no point awarded.')).toBeVisible();
+ await page.getByRole('button',{name:'Settings & data',exact:true}).click();
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export JSON',exact:true}).click();const dl=await downloadPromise;const path=await dl.path();expect(path).toBeTruthy();
+ await page.locator('input[type=file]').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{"format":"bad"}')});await expect(page.getByRole('status')).toContainText('Invalid backup');
+ await page.locator('input[type=file]').setInputFiles(path!);await page.getByRole('button',{name:'Merge progress',exact:true}).click();
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.history.v1')!).length)).toBe(1);
+ await page.getByRole('button',{name:'Clear progress',exact:true}).click();await page.getByRole('button',{name:'Clear all progress',exact:true}).click();
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.history.v1')!).length)).toBe(0);
+ await page.locator('input[type=file]').setInputFiles(path!);await page.getByRole('button',{name:'Replace existing',exact:true}).click();await page.reload();
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.history.v1')!).length)).toBe(1);expect(errors).toEqual([]);
+});
+test('expired exam automatically submits even from overview',async({page})=>{
+ await page.goto('/');await page.getByRole('button',{name:'Start mock exam',exact:true}).click();
+ await page.evaluate(()=>{const e=JSON.parse(localStorage.getItem('subject1.activeExam.v1')!);e.startedAt=new Date(Date.now()-2800000).toISOString();localStorage.setItem('subject1.activeExam.v1',JSON.stringify(e));});
+ await page.goto('/#home');await page.reload();await expect(page.locator('.result-banner')).toContainText('FAIL');await expect(page.locator('.score-ring strong')).toHaveText('0');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('subject1.history.v1')!).length)).toBe(1);
+});
+test('image library, bookmark, bilingual study, wrong-answer practice and mastery',async({page})=>{
+ await page.goto('/#study');await expect(page.locator('.question-card')).toBeVisible();
+ await expect(page.locator('.image-stage img')).toBeVisible();expect(await page.locator('.image-stage img').evaluate((img:HTMLImageElement)=>img.naturalWidth)).toBeGreaterThan(0);
+ await page.getByRole('button',{name:'Bookmark question',exact:true}).click();await page.getByLabel('Question language', {exact:true}).selectOption('both');await expect(page.locator('[lang="zh-CN"]').first()).toBeVisible();
+ await page.getByRole('button',{name:'Bookmarks',exact:true}).click();await expect(page.getByRole('heading',{name:'1 questions',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Practice this set',exact:true}).click();const first=bank[0];const wrong=first.options.find(o=>o.label!==first.answer)!;
+ await page.locator(`input[value="${wrong.label}"]`).locator('..').click();await expect(page.locator('.explanation')).toContainText('Incorrect answer');
+ await page.getByRole('button',{name:/Wrong answers/}).click();await expect(page.getByRole('heading',{name:'1 questions',exact:true})).toBeVisible();
+ for(let i=0;i<2;i++){await page.getByRole('button',{name:'Practice this set',exact:true}).click();await page.locator(`input[value="${first.answer}"]`).locator('..').click();await expect(page.locator('.explanation')).toContainText('Correct answer');await page.getByRole('button',{name:'Back to filters',exact:true}).click();}
+ await expect(page.getByRole('heading',{name:'No wrong answers to review.'})).toBeVisible();
+ await page.getByRole('button',{name:'Question library',exact:true}).click();await page.getByLabel('Search questions').fill('zzzz-no-matches-zzzz');await expect(page.getByRole('heading',{name:'No questions match your filters.'})).toBeVisible();
+});
+for(const width of [360,768,1280])test(`responsive layout at ${width}px`,async({page})=>{await page.setViewportSize({width,height:1000});await page.goto('/');await expect(page.getByRole('heading',{name:'Your road to ready.'})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`test-results/home-${width}.png`,fullPage:true});await page.getByRole('button',{name:'Start mock exam',exact:true}).click();await expect(page.locator('.question-card')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`test-results/exam-${width}.png`,fullPage:true});});

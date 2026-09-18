@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dataset-source/
+.sites-runtime/
+test-results/
+playwright-report/
+*.tsbuildinfo
+*.zip
+
+.openai/
