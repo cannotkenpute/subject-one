@@ -5,9 +5,9 @@ export interface RuleSection { id:string; label_en:string; label_zh:string; summ
 const points:RuleGroup[]=[
  {id:'p12',tag:'12',tone:'critical',label_en:'12 points at once',label_zh:'一次记12分',note_en:'Twelve points fills a cycle on its own: the licence is handed in, and you study and re-sit the theory exam before driving again.',note_zh:'一次记满12分即达到记分周期上限，须参加满分学习并重新考试。',entries:[
   {en:'Driving after drinking (blood alcohol 20 mg/100 ml or more, below 80).',zh:'饮酒后驾驶机动车的。'},
-  {en:'Fleeing the scene of a crash that caused minor injury or worse, where it is not yet a crime.',zh:'造成致人轻伤以上的交通事故后逃逸，尚不构成犯罪的。'},
+  {en:'Fleeing a crash that caused slight injury (轻伤), more serious injury or death, where it is not yet a crime.',zh:'造成致人轻伤以上的交通事故后逃逸，尚不构成犯罪的。'},
   {en:'Using forged or altered plates, vehicle licence, driving licence or school-bus sign — or using another vehicle’s plates or licence.',zh:'使用伪造、变造的机动车号牌、行驶证、驾驶证、校车标牌，或者使用其他机动车号牌、行驶证的。'},
-  {en:'Carrying more than 20% over the approved number of people in a school bus, intercity coach or tourist coach — or more than 100% over in any other passenger vehicle.',zh:'驾驶校车、公路客运汽车、旅游客运汽车载人超过核定人数20%以上，或者驾驶其他载客汽车载人超过核定人数100%以上的。'},
+  {en:'Carrying 20% or more over the approved number of people in a school bus, intercity coach or tourist coach — or 100% or more over in any other passenger vehicle.',zh:'驾驶校车、公路客运汽车、旅游客运汽车载人超过核定人数20%以上，或者驾驶其他载客汽车载人超过核定人数100%以上的。'},
   {en:'On an expressway or urban expressway: exceeding the limit by 20% or more in a school bus, medium-or-larger passenger/goods vehicle or dangerous-goods vehicle — or by 50% or more in any other vehicle.',zh:'驾驶校车、中型以上载客载货汽车、危险物品运输车辆在高速公路、城市快速路上行驶超过规定时速20%以上，或者驾驶其他机动车在高速公路、城市快速路上行驶超过规定时速50%以上的。'},
   {en:'Reversing, driving against traffic, or crossing the central divider to turn around on an expressway or urban expressway.',zh:'驾驶机动车在高速公路、城市快速路上倒车、逆行、穿越中央分隔带掉头的。'},
   {en:'Taking another driver’s penalty and points for money.',zh:'代替实际机动车驾驶人接受交通违法行为处罚和记分牟取经济利益的。'}]},
@@ -16,20 +16,21 @@ const points:RuleGroup[]=[
   {en:'Driving with no plates fitted, or with the plates deliberately covered or defaced.',zh:'驾驶未悬挂机动车号牌，或者故意遮挡、污损机动车号牌的机动车上道路行驶的。'},
   {en:'Stopping or parking illegally on an expressway or urban expressway.',zh:'驾驶机动车在高速公路或者城市快速路上违法停车的。'},
   {en:'Exceeding the limit by 50% or more in a school bus, medium-or-larger passenger/goods vehicle or dangerous-goods vehicle, on roads other than expressways and urban expressways.',zh:'驾驶校车、中型以上载客载货汽车、危险物品运输车辆在高速公路、城市快速路以外的道路上行驶超过规定时速50%以上的。'},
-  {en:'Carrying 50% to under 100% over the approved number of people in a passenger vehicle with more than 7 seats.',zh:'驾驶7座以上载客汽车载人超过核定人数50%以上未达到100%的。'},
+  {en:'Carrying 50% to under 100% over the approved number of people in a passenger vehicle with 7 or more seats.',zh:'驾驶7座以上载客汽车载人超过核定人数50%以上未达到100%的。'},
   {en:'Driving a school bus without a school-bus driving qualification.',zh:'未取得校车驾驶资格驾驶校车的。'},
   {en:'Driving a medium-or-larger passenger vehicle or dangerous-goods vehicle for more than 4 hours without stopping, or stopping for less than 20 minutes.',zh:'连续驾驶中型以上载客汽车、危险物品运输车辆超过4小时未停车休息或者停车休息时间少于20分钟的。'}]},
  {id:'p6',tag:'6',tone:'medium',label_en:'6 points at once',label_zh:'一次记6分',entries:[
   {en:'Ignoring a traffic signal.',zh:'驾驶机动车不按交通信号灯指示通行的。'},
   {en:'Driving while your licence is suspended or held.',zh:'在驾驶证被暂扣、扣留期间驾驶机动车的。'},
-  {en:'Leaving the scene of a minor crash, where it is not yet a crime.',zh:'造成轻微交通事故后逃逸，尚不构成犯罪的。'},
+  {en:'Fleeing a crash that caused minor injury (轻微伤) or property damage, where it is not yet a crime.',zh:'造成致人轻微伤或者财产损失的交通事故后逃逸，尚不构成犯罪的。'},
   {en:'Driving in the emergency lane of an expressway or urban expressway without cause.',zh:'驾驶机动车在高速公路或者城市快速路上违法占用应急车道行驶的。'},
   {en:'On an expressway or urban expressway: exceeding the limit by under 20% in a school bus, medium-or-larger passenger/goods vehicle or dangerous-goods vehicle; or by 20% to under 50% in any other vehicle.',zh:'驾驶校车、中型以上载客载货汽车、危险物品运输车辆在高速公路、城市快速路上行驶超过规定时速未达到20%；驾驶其他机动车在高速公路、城市快速路上行驶超过规定时速20%以上未达到50%的。'},
   {en:'Off the expressway network: exceeding the limit by 20% to under 50% in a school bus, medium-or-larger passenger/goods vehicle or dangerous-goods vehicle; or by 50% or more in any other vehicle.',zh:'驾驶校车、中型以上载客载货汽车、危险物品运输车辆在高速公路、城市快速路以外的道路上行驶超过规定时速20%以上未达到50%；驾驶其他机动车在上述道路上行驶超过规定时速50%以上的。'},
-  {en:'Carrying under 20% over the approved number in a school bus or coach; 20% to under 50% over in a vehicle with more than 7 seats; or 50% to under 100% over in any other passenger vehicle.',zh:'驾驶校车、公路客运汽车、旅游客运汽车载人超过核定人数未达到20%，或者驾驶7座以上载客汽车载人超过核定人数20%以上未达到50%，或者驾驶其他载客汽车载人超过核定人数50%以上未达到100%的。'},
-  {en:'Carrying cargo more than 50% over the maximum permitted total mass in a goods vehicle.',zh:'驾驶载货汽车载物超过最大允许总质量50%以上的。'},
-  {en:'Carrying dangerous goods without the required warning signs, warning lights or safety measures.',zh:'运输危险物品未按规定悬挂警示标志、安装警示灯，或者未采取必要的安全措施的。'},
-  {en:'Towing a trailer against the rules.',zh:'驾驶机动车违反规定牵引挂车的。'}]},
+  {en:'Carrying under 20% over the approved number in a school bus or coach; 20% to under 50% over in a vehicle with 7 or more seats; or 50% to under 100% over in any other passenger vehicle.',zh:'驾驶校车、公路客运汽车、旅游客运汽车载人超过核定人数未达到20%，或者驾驶7座以上载客汽车载人超过核定人数20%以上未达到50%，或者驾驶其他载客汽车载人超过核定人数50%以上未达到100%的。'},
+  {en:'Carrying cargo 50% or more over the maximum permitted total mass in a goods vehicle.',zh:'驾驶载货汽车载物超过最大允许总质量50%以上的。'},
+  {en:'Transporting explosives, flammable or explosive chemicals, highly toxic or radioactive goods without following the designated time, route or speed, or without the required warning signs and safety measures.',zh:'驾驶机动车载运爆炸物品、易燃易爆化学物品以及剧毒、放射性等危险物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志并采取必要的安全措施的。'},
+  {en:'Transporting an oversized, non-dismantlable load without following the designated time, route or speed, or without warning signs.',zh:'驾驶机动车运载超限的不可解体的物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志的。'},
+  {en:'Transporting dangerous chemicals into a restricted area without approval.',zh:'驾驶机动车运输危险化学品，未经批准进入危险化学品运输车辆限制通行的区域的。'}]},
  {id:'p3',tag:'3',tone:'low',label_en:'3 points at once',label_zh:'一次记3分',entries:[
   {en:'Using a hand-held phone or anything else that gets in the way of safe driving.',zh:'驾驶机动车有拨打、接听手持电话等妨碍安全驾驶的行为的。'},
   {en:'Not slowing down, stopping or giving way to pedestrians at a crosswalk.',zh:'驾驶机动车行经人行横道，不按规定减速、停车、避让行人的。'},
@@ -39,12 +40,13 @@ const points:RuleGroup[]=[
   {en:'Driving below the posted minimum speed on an expressway.',zh:'驾驶机动车在高速公路上行驶低于规定最低时速的。'},
   {en:'Exceeding the limit by 20% to under 50% in an ordinary vehicle, on roads other than expressways and urban expressways.',zh:'驾驶校车、中型以上载客载货汽车、危险物品运输车辆以外的机动车在高速公路、城市快速路以外的道路上行驶超过规定时速20%以上未达到50%的。'},
   {en:'Carrying 20% to under 50% over the approved number of people in an ordinary passenger vehicle.',zh:'驾驶校车、公路客运汽车、旅游客运汽车、7座以上载客汽车以外的其他载客汽车载人超过核定人数20%以上未达到50%的。'},
-  {en:'Carrying cargo 30% to under 50% over the maximum permitted total mass.',zh:'驾驶载货汽车载物超过最大允许总质量30%以上未达到50%的。'},
+  {en:'Carrying cargo 30% to under 50% over the maximum permitted total mass, or carrying passengers in a goods vehicle against the rules.',zh:'驾驶载货汽车载物超过最大允许总质量30%以上未达到50%的，或者违反规定载客的。'},
   {en:'After a breakdown or crash, not using the required lights and not setting out a warning triangle.',zh:'机动车在道路上发生故障、事故停车后，不按规定使用灯光和设置警告标志的。'},
   {en:'Not giving way to a school bus as required.',zh:'驾驶机动车不按规定避让校车的。'},
   {en:'Plates fitted in a way that does not meet the rules.',zh:'机动车号牌安装不符合规定的。'},
   {en:'Driving a coach, tourist coach or dangerous-goods vehicle that has missed its scheduled safety inspection.',zh:'驾驶未按规定定期进行安全技术检验的公路客运汽车、旅游客运汽车、危险物品运输车辆上道路行驶的。'},
-  {en:'Driving a medium-or-larger goods vehicle for more than 4 hours without stopping, or stopping for less than 20 minutes.',zh:'连续驾驶中型以上载货汽车超过4小时未停车休息或者停车休息时间少于20分钟的。'}]},
+  {en:'Driving a goods vehicle for more than 4 hours without stopping, or stopping for less than 20 minutes.',zh:'连续驾驶载货汽车超过4小时未停车休息或者停车休息时间少于20分钟的。'},
+  {en:'Driving a school bus without checking its safety condition before setting out, or driving a school bus with safety hazards.',zh:'驾驶校车上道路行驶前，未对校车车况是否符合安全技术要求进行检查，或者驾驶存在安全隐患的校车上道路行驶的。'}]},
  {id:'p1',tag:'1',tone:'info',label_en:'1 point at once',label_zh:'一次记1分',entries:[
   {en:'Not wearing a seat belt as required.',zh:'驾驶机动车未按规定系安全带的。'},
   {en:'Riding a motorcycle without a helmet.',zh:'驾驶摩托车未按规定戴安全头盔的。'},
@@ -55,7 +57,7 @@ const points:RuleGroup[]=[
   {en:'Carrying cargo that is over the permitted length, width or height.',zh:'驾驶机动车载货长度、宽度、高度超过规定的。'},
   {en:'Carrying cargo under 30% over the maximum permitted total mass.',zh:'驾驶载货汽车载物超过最大允许总质量未达到30%的。'},
   {en:'Driving a vehicle (other than a coach, tourist coach or dangerous-goods vehicle) that has missed its scheduled safety inspection.',zh:'驾驶未按规定定期进行安全技术检验的公路客运汽车、旅游客运汽车、危险物品运输车辆以外的机动车上道路行驶的。'},
-  {en:'Driving a vehicle whose appearance or registered technical data has been changed without approval.',zh:'驾驶擅自改变外形和已登记的有关技术数据的机动车上道路行驶的。'}]}];
+  {en:'Driving a goods vehicle whose registered structure, construction or characteristics have been changed without approval.',zh:'驾驶擅自改变已登记的结构、构造或者特征的载货汽车上道路行驶的。'}]}];
 
 const cycle:RuleGroup[]=[
  {id:'cycle-basics',label_en:'How the cycle works',label_zh:'记分周期怎么算',entries:[

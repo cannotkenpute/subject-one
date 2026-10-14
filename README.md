@@ -18,6 +18,10 @@ The **Rules reference** page (`#rules`) collects the China-specific facts the ba
 
 The content lives in `src/lib/rules.ts` as plain data — edit or extend it there. It is summarised for study from the Ministry of Public Security point system (Order No. 163, in force 1 April 2022), the Road Traffic Safety Law and its implementing regulations. Every source consulted, the compilation method and the known limits are recorded in [`docs/RULES-SOURCES.md`](docs/RULES-SOURCES.md). It is not official text and not legal advice; verify against current official sources before relying on it.
 
+## Point rules quiz
+
+The **Point rules quiz** page (`#point-quiz`) pairs the 50 point-deduction rules in the Rules reference with a separate review and quiz flow. Read all levels or focus on 12, 9, 6, 3 or 1 point. Mixed quizzes cover every point level and ask for the deduction; focused quizzes ask which violation carries the selected deduction, with distractors from other levels. Each session uses up to 10 unique rules, checks and locks each answer immediately, shows a final score and offers a retry of missed rules. English, Chinese and bilingual settings are supported. Quiz sessions are temporary and do not alter mock-exam history, bookmarks or question-bank mastery. Rules-reference point groups have direct links to the matching study set.
+
 ## Question scope
 
 Exams, practice and browsing exclude city-specific restrictions, named local streets and regional-only procedures. The source bank is retained for backup compatibility and historical scores. See [the exclusion audit](docs/QUESTION-EXCLUSIONS.md) for the reviewed references and question list. General urban-road rules remain included. Saved and imported unfinished exams replace excluded questions while preserving other answers and exam settings.

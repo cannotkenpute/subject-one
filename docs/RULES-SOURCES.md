@@ -46,10 +46,7 @@ Retrieved September 2026:
 
 ## 4. Known limits
 
-- **Not exhaustive.** Order No. 163 enumerates 50 scored violations (7 at 12 points, 7 at 9, 11 at 6,
-  15 at 3, 10 at 1). The app carries 48 of them — one 6-point and one 3-point item were left out
-  because the sources consulted did not agree on their wording. Everything included is attested by at
-  least two sources.
+- **Point-list verification, 14 October 2026.** The point-deduction groups were checked against Articles 8–12 of the [official text published by the Beijing Public Security Bureau](https://gaj.beijing.gov.cn/wsgs/2024zcwj/zcfg/202406/t20240628_3732202.html). The reference now has 50 study entries across the five levels. This check replaced an unsupported 6-point trailer entry, added the restricted dangerous-chemicals and school-bus inspection rules, and corrected vehicle scope, injury terminology and threshold wording. Some compound provisions are grouped or split for study. The point quiz uses these same entries. This verification does not extend to the other reference sections.
 - **Point values only.** Fines, detention and licence suspension are covered for alcohol offences,
   where they are the main thing being tested, but not for every scored violation.
 - **Local variation.** 学法减分 formats and credit amounts are set by provincial and municipal traffic
