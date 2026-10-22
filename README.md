@@ -43,3 +43,11 @@ Mock exams default to no time limit and instant feedback after each answer, incl
 Use one active study tab at a time; separate tabs and devices do not synchronize. Export backups before clearing browser data. Optional PWA/offline installation, spaced repetition and cloud sync are outside this release.
 
 Application code is licensed separately under the MIT license in `LICENSE`.
+
+## Past-mistake mock tests
+
+On Overview or Mock exam, choose **Question set ? Past mock-test mistakes**. The pool contains every unique question actually answered incorrectly in saved mock-test history, including short attempts and questions later mastered. Unanswered questions are excluded. Each test randomly selects up to 100 questions; smaller pools use every question and receive a percentage score with a 90% pass threshold. The existing time limit, feedback and automatic-stop settings apply. The selected set, unfinished test and completed results survive reloads and JSON backups.
+
+## Rules-reference mock tests
+
+Choose **Question set: Rules reference** on Overview or Mock exam. This set tests the reference text directly: point deductions, numeric limits and thresholds, probation, licence codes, and emergency numbers and distances. Questions and bilingual explanations are derived from the existing Rules reference. Each test selects up to 100 questions with the same timer, feedback, resume and backup support as other mock tests.

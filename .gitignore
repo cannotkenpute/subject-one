@@ -7,4 +7,11 @@ playwright-report/
 *.tsbuildinfo
 *.zip
 
+# Local development artifacts and saved browser progress
+*.log
+subject1-progress-*.json
+
+# The monetized fork is its own repository with its own remote
+monetized/
+
 .openai/
